@@ -16,8 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="cqrs\sample\commands\" />
-    <Folder Include="cqrs\sample\queries\" />
+    <Folder Include="cqrs\auditTrail\commands\" />
+    <Folder Include="cqrs\auditTrail\queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\domain\domain.csproj" />
   </ItemGroup>
 
 </Project>
