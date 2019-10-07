@@ -11,8 +11,26 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.5.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Seq.Extensions.Logging" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\application\application.csproj" />
+    <ProjectReference Include="..\domain\domain.csproj" />
+    <ProjectReference Include="..\lib.common\lib.common.csproj" />
+    <ProjectReference Include="..\persistence\persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

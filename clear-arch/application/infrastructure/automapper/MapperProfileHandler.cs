@@ -1,7 +1,8 @@
-﻿using System;
+﻿using application.interfaces.mapping;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace application.infrastructure.automapper
 {
@@ -47,3 +48,4 @@ namespace application.infrastructure.automapper
             return mapsFrom;
         }
     }
+}

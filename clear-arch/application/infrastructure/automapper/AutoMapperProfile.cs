@@ -1,21 +1,41 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
 namespace application.infrastructure.automapper
 {
-    public static class AutoMapperFactory
+    public class AutoMapperProfile : Profile
     {
-        public static IMapper Create()
+        public AutoMapperProfile()
         {
-            // Auto Mapper Configurations
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new AutoMapperProfile());
-            });
+            LoadStandardMappings();
+            LoadCustomMappings();
+            LoadConverters();
+        }
 
-            return mappingConfig.CreateMapper();
+        private void LoadConverters()
+        {
+
+        }
+
+        private void LoadStandardMappings()
+        {
+            var mapsFrom = MapperProfileHandler.LoadStandardMappings(Assembly.GetExecutingAssembly());
+
+            foreach (var map in mapsFrom)
+            {
+                CreateMap(map.Source, map.Destination).ReverseMap();
+            }
+
+        }
+
+        private void LoadCustomMappings()
+        {
+            var mapsFrom = MapperProfileHandler.LoadCustomMapping(Assembly.GetExecutingAssembly());
+
+            foreach (var map in mapsFrom)
+            {
+                map.CreateMappings(this);
+            }
         }
     }
 }
