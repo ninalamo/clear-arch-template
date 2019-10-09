@@ -1,11 +1,9 @@
-﻿using domain.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using lib.common.interfaces;
 
 namespace domain
 {
-    public class BaseAudit : ICreditable, ITimeStamp, IActive
+    public class BaseAudit : ITakeCredit, ITimeStamp, IActive
     {
         
         public bool IsActive { get; set; }

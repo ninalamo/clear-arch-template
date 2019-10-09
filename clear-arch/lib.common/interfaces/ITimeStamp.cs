@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace domain.interfaces
+namespace lib.common.interfaces
 {
     public interface ITimeStamp
     {

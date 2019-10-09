@@ -18,3 +18,6 @@
 /clear-arch/persistence/bin/Debug/netcoreapp3.0
 /clear-arch/persistence/obj
 /clear-arch/.vs/clear-arch
+/clear-arch/domain/bin/Debug/netstandard2.1
+/clear-arch/lib.infrastructure/bin/Debug/netstandard2.1
+/clear-arch/persistence/Migrations

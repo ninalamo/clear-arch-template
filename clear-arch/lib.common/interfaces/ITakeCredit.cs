@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace domain.interfaces
+namespace lib.common.interfaces
 {
-    public interface ICreditable
+    public interface ITakeCredit
     {
         string CreatedBy { get; set; }
         string ModifiedBy { get; set; }
