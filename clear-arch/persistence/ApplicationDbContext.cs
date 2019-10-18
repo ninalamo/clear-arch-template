@@ -21,7 +21,10 @@ namespace persistence
         {
             
 
-            base.OnModelCreating(modelBuilder);
+            //base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
