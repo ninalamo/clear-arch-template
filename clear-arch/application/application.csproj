@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="cqrs\auditTrail\commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\domain\domain.csproj" />
     <ProjectReference Include="..\lib.common\lib.common.csproj" />
   </ItemGroup>

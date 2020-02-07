@@ -8,4 +8,6 @@ namespace lib.common.interfaces
     {
         bool IsActive { get; set; }
     }
+
+   
 }

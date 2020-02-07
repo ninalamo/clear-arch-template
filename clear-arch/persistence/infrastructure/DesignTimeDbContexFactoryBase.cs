@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace persistence.infrastructure
 {
@@ -17,7 +15,6 @@ namespace persistence.infrastructure
         public TContext CreateDbContext(string[] args)
         {
             var basePath = $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}api";
-            //Directory.GetCurrentDirectory() + string.Format("{0}..{0}api", Path.DirectorySeparatorChar);
             return Create(basePath, Environment.GetEnvironmentVariable(AspNetCoreEnvironment));
         }
 

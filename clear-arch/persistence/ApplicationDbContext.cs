@@ -2,7 +2,6 @@
 using domain;
 using Microsoft.EntityFrameworkCore;
 using persistence.infrastructure.extensions;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

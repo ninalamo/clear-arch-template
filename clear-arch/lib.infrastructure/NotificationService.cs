@@ -1,11 +1,8 @@
 ﻿using application.interfaces;
 using application.notifications.models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace api
+namespace lib.infrastructure
 {
     public class NotificationService : INotificationService
     {

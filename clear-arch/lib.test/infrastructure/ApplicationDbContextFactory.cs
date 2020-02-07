@@ -6,7 +6,7 @@ using System.Text;
 
 namespace lib.test.infrastructure
 {
-    public class ApplicationDbContextFactory
+    public sealed class ApplicationDbContextFactory
     {
         public static ApplicationDbContext Create()
         {

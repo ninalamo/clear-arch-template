@@ -1,9 +1,6 @@
 ﻿using domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace persistence.configuration
 {
@@ -12,7 +9,7 @@ namespace persistence.configuration
        
         public void Configure(EntityTypeBuilder<AuditTrail> builder)
         {
-            builder.HasNoKey();
+            builder.HasKey(i => i.ID).HasName("AuditID");
         }
     }
 }

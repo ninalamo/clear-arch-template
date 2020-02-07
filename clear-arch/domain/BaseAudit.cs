@@ -3,7 +3,7 @@ using lib.common.interfaces;
 
 namespace domain
 {
-    public class BaseAudit : ITakeCredit, ITimeStamp, IActive
+    public class BaseAudit<Tidentity> : ITakeCredit, ITimeStamp, IActive, IHaveID<Tidentity> where Tidentity : struct
     {
         
         public bool IsActive { get; set; }
@@ -11,5 +11,7 @@ namespace domain
         public DateTimeOffset ModifiedOn { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
+        public Tidentity ID { get; set; }
     }
+
 }

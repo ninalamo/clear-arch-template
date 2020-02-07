@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using persistence.infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace persistence
 {

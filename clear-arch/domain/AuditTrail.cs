@@ -2,9 +2,8 @@
 
 namespace domain
 {
-    public class AuditTrail : BaseAudit
+    public class AuditTrail : BaseAudit<long>
     {
-        public long ID { get; set; }
         public string BeforeCommit { get; set; }
         public string AfterCommit { get; set; }
         public string Reason { get; set; }

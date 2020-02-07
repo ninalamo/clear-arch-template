@@ -1,9 +1,7 @@
-﻿using domain.interfaces;
+﻿using lib.common.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace persistence.infrastructure.extensions
 {
