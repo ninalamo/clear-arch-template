@@ -1,9 +1,5 @@
-﻿using domain.interfaces;
+using lib.common.interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace api.Extensions
 {
@@ -11,7 +7,7 @@ namespace api.Extensions
     {
 
 
-        public static void GiveCredit(this ControllerBase controller, ICreditable model, bool isEdit = false)
+        public static void GiveCredit(this ControllerBase controller, ITakeCredit model, bool isEdit = false)
         {
 
             if (controller.User == null) return;
