@@ -7,7 +7,7 @@ using System.Text;
 
 namespace application.cqrs._base
 {
-    public class CommandResponseBase
+    public class CommandResponseBase : ICommandResponseBase
     {
         public CommandResponseBase(string entity, object id)
         {
