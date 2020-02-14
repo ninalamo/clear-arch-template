@@ -14,9 +14,9 @@ namespace api.Controllers
     {
 
         [HttpGet("get")]
-        public async Task<ActionResult<GetAuditTrailsResult>> GetAll()
+        public async Task<ActionResult<GetAuditTrailsResponse>> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAuditTrailsQuery()));
+            return Ok(await Mediator.Send(new GetAuditTrailsRequest()));
         }
     }
 }

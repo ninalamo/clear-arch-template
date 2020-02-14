@@ -6,6 +6,7 @@ using application.interfaces;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using lib.common;
+using lib.infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -72,7 +73,7 @@ namespace api
             });
 
             // Add MediatR
-            services.AddMediatR(typeof(GetAuditTrailsHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(GetAuditTrailsRequestHandler).GetTypeInfo().Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
@@ -84,7 +85,7 @@ namespace api
                 .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddMvcOptions(options => options.EnableEndpointRouting = false)
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GetAuditTrailsQueryValidator>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GetAuditTrailsRequestValidator>());
 
             // Customise default API behavour
             services.Configure<ApiBehaviorOptions>(options =>

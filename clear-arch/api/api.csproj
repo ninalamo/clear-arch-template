@@ -26,6 +26,7 @@
     <ProjectReference Include="..\application\application.csproj" />
     <ProjectReference Include="..\domain\domain.csproj" />
     <ProjectReference Include="..\lib.common\lib.common.csproj" />
+    <ProjectReference Include="..\lib.infrastructure\lib.infrastructure.csproj" />
     <ProjectReference Include="..\persistence\persistence.csproj" />
   </ItemGroup>
 
