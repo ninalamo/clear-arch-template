@@ -1,7 +1,6 @@
 ﻿namespace api.Controllers
 {
     using api.Features.Authorization;
-    using application.cqrs._base;
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;

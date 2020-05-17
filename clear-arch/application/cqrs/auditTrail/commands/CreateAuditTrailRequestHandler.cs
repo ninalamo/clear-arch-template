@@ -3,9 +3,6 @@ using application.interfaces;
 using AutoMapper;
 using domain;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,7 +31,6 @@ namespace application.cqrs.auditTrail.commands
             await dbContext.SaveChangesAsync(cancellationToken);
 
             return new CreateAuditTrailResponse(nameof(AuditTrail), entity.ID);
-
         }
     }
 }

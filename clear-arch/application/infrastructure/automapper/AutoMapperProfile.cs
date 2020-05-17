@@ -14,7 +14,6 @@ namespace application.infrastructure.automapper
 
         private void LoadConverters()
         {
-
         }
 
         private void LoadStandardMappings()
@@ -25,7 +24,6 @@ namespace application.infrastructure.automapper
             {
                 CreateMap(map.Source, map.Destination).ReverseMap();
             }
-
         }
 
         private void LoadCustomMappings()

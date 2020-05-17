@@ -1,7 +1,4 @@
-﻿using domain;
-using System.Collections.Generic;
-
-namespace application.interfaces.paging
+﻿namespace application.interfaces.paging
 {
     public interface IPagedQuery
     {
@@ -10,7 +7,5 @@ namespace application.interfaces.paging
         int Total { get; }
 
         int GetSkip();
-
-       
     }
 }

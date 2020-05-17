@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace domain
+﻿namespace domain
 {
     public class AuditTrail : BaseAudit<long>
     {

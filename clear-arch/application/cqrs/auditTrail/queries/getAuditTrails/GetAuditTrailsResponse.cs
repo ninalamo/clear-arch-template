@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using application.cqrs._base;
+﻿using application.cqrs._base;
 using application.interfaces.mapping;
 using AutoMapper;
 using domain;
+using System.Collections.Generic;
 
 namespace application.cqrs.auditTrail.queries
 {
@@ -11,7 +11,6 @@ namespace application.cqrs.auditTrail.queries
         public GetAuditTrailsResponse(IEnumerable<GetAuditTrailsDto> items, int pageNo, int pageSize, long totalRecordCount) : base(items, pageNo, pageSize, totalRecordCount)
         {
         }
-
     }
 
     public class GetAuditTrailsDto : IHaveCustomMapping

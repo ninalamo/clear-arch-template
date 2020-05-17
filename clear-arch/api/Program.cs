@@ -45,23 +45,23 @@ namespace api
                     webBuilder.ConfigureKestrel(serverOptions =>
                     {
                         // Set properties and call methods on options
-
                     })
                     .UseContentRoot(Directory.GetCurrentDirectory())
-                    .ConfigureAppConfiguration((hosting, config) => {
+                    .ConfigureAppConfiguration((hosting, config) =>
+                    {
                         var env = hosting.HostingEnvironment;
                         config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                           .AddJsonFile($"appsettings.Local.json", optional: true, reloadOnChange: true)
                           .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                         config.AddEnvironmentVariables();
                     })
-                    .ConfigureLogging((hosting, logging) => {
+                    .ConfigureLogging((hosting, logging) =>
+                    {
                         logging.AddConfiguration(hosting.Configuration.GetSection("Logging"));
                         logging.AddConsole();
                         logging.AddDebug();
                     })
                     .UseStartup<Startup>();
                 });
-
     }
 }

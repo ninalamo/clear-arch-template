@@ -1,7 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace application.cqrs.auditTrail.queries
 {
@@ -9,7 +6,6 @@ namespace application.cqrs.auditTrail.queries
     {
         public GetAuditTrailsRequestValidator()
         {
-            
         }
     }
 }

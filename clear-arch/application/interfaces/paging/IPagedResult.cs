@@ -1,6 +1,5 @@
 ﻿using application.interfaces.mapping;
 using System.Collections.Generic;
-using System.Text;
 
 namespace application.interfaces.paging
 {
@@ -8,7 +7,6 @@ namespace application.interfaces.paging
     {
         IEnumerable<T> Data { get; }
         PagingInfo Paging { get; }
-
     }
 
     public struct PagingInfo
@@ -20,6 +18,5 @@ namespace application.interfaces.paging
         public int PageCount { get; internal set; }
 
         public long TotalRecordCount { get; set; }
-
     }
 }

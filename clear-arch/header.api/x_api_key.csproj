@@ -12,9 +12,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ApplicantsController.cs" />
+    <Compile Remove="Controllers\ApproversController.cs" />
     <Compile Remove="Controllers\ClientsController.cs" />
+    <Compile Remove="Controllers\DepartmentsController.cs" />
+    <Compile Remove="Controllers\EmployeesController.cs" />
     <Compile Remove="Controllers\GroupsController.cs" />
+    <Compile Remove="Controllers\JobsController.cs" />
+    <Compile Remove="Controllers\MiscController.cs" />
+    <Compile Remove="Controllers\PersonsController.cs" />
     <Compile Remove="Controllers\RequestsController.cs" />
+    <Compile Remove="Controllers\SecurityController.cs" />
     <Compile Remove="Controllers\SeedController.cs" />
   </ItemGroup>
 

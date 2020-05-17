@@ -11,6 +11,7 @@ namespace application.infrastructure.automapper
         public Type Source { get; set; }
         public Type Destination { get; set; }
     }
+
     public static class MapperProfileHandler
     {
         public static IList<Map> LoadStandardMappings(Assembly rootAssembly)
@@ -35,7 +36,6 @@ namespace application.infrastructure.automapper
         public static IList<IHaveCustomMapping> LoadCustomMapping(Assembly rootAssembly)
         {
             var types = rootAssembly.GetExportedTypes();
-
 
             var mapsFrom = (from type in types
                             from instance in type.GetInterfaces()

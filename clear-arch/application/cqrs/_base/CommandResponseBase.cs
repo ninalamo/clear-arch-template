@@ -1,6 +1,4 @@
 ﻿using application.interfaces.paging;
-using System;
-using System.Text;
 
 namespace application.cqrs._base
 {
@@ -15,7 +13,5 @@ namespace application.cqrs._base
         public object ID { get; }
 
         public string Entity { get; }
-
-
     }
 }

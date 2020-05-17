@@ -1,5 +1,4 @@
-﻿using domain.Users;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 
 namespace api.Features.Authorization

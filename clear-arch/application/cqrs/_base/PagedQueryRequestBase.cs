@@ -1,7 +1,4 @@
 ﻿using application.interfaces.paging;
-using domain;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace application.cqrs._base
 {
@@ -19,7 +16,5 @@ namespace application.cqrs._base
 
             return (PageNumber - 1) * PageSize;
         }
-
-       
     }
 }

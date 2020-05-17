@@ -1,7 +1,6 @@
 ﻿namespace api.Features.Authentication
 {
     using application.interfaces;
-    using domain.Users;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;

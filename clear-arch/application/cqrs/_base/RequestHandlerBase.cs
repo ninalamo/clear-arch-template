@@ -27,7 +27,6 @@ namespace application.cqrs._base
             {
                 entity.ModifiedBy = createdBy;
             }
-
         }
     }
 }

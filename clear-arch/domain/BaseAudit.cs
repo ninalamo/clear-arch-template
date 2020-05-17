@@ -1,11 +1,10 @@
-﻿using System;
-using lib.common.interfaces;
+﻿using lib.common.interfaces;
+using System;
 
 namespace domain
 {
     public class BaseAudit<Tidentity> : ITakeCredit, ITimeStamp, IActive, IHaveID<Tidentity> where Tidentity : struct
     {
-        
         public bool IsActive { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset ModifiedOn { get; set; }
@@ -13,5 +12,4 @@ namespace domain
         public string ModifiedBy { get; set; }
         public Tidentity ID { get; set; }
     }
-
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace lib.common
+﻿namespace lib.common
 {
     public class AppSettings
     {

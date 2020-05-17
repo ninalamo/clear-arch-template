@@ -1,6 +1,5 @@
 ﻿namespace api.CustomResult
 {
-    using application.cqrs._base;
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>

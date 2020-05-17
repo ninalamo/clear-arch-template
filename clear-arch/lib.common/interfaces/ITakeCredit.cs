@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace lib.common.interfaces
+﻿namespace lib.common.interfaces
 {
     public interface ITakeCredit
     {

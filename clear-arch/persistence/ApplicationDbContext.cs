@@ -11,19 +11,15 @@ namespace persistence
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<AuditTrail> History { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-
             //base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -31,6 +27,5 @@ namespace persistence
             ChangeTracker.ApplyTimeStamp();
             return base.SaveChangesAsync(cancellationToken);
         }
-
     }
 }

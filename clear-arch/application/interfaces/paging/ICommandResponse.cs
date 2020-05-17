@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace application.interfaces.paging
+﻿namespace application.interfaces.paging
 {
     public interface ICommandResponse
     {

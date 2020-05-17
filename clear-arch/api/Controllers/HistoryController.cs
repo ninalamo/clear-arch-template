@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using application.cqrs.auditTrail.queries;
-using Microsoft.AspNetCore.Http;
+﻿using application.cqrs.auditTrail.queries;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace api.Controllers
 {
@@ -12,7 +8,6 @@ namespace api.Controllers
     [ApiController]
     public class HistoryController : BaseController
     {
-
         [HttpGet("get")]
         public async Task<ActionResult<GetAuditTrailsResponse>> GetAll()
         {

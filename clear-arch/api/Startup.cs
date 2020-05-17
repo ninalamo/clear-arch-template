@@ -57,7 +57,6 @@ namespace api
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
             })
             .AddJwtBearer(x =>
             {
@@ -99,7 +98,6 @@ namespace api
             services.AddResponseCaching();
             services.AddResponseCompression();
 
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -123,7 +121,6 @@ namespace api
                     }
                 });
             });
-
 
             services.AddControllers();
         }
@@ -150,15 +147,12 @@ namespace api
 
             app.UseAuthentication();
 
-
             app.UseHttpsRedirection();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
-
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {

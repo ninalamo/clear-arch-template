@@ -3,8 +3,7 @@ using MediatR;
 
 namespace application.cqrs.auditTrail.commands
 {
-    public class CreateAuditTrailRequest :  CreditableBase, IRequest<CreateAuditTrailResponse>
+    public class CreateAuditTrailRequest : CreditableBase, IRequest<CreateAuditTrailResponse>
     {
-       
     }
 }

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace lib.test.infrastructure
@@ -13,17 +11,14 @@ namespace lib.test.infrastructure
         public IMapper Mapper { get; private set; }
         public static long Seed_ID => 9999;
 
-
-
         public QueryTestFixture()
         {
             Context = ApplicationDbContextFactory.Create();
             Mapper = AutoMapperFactory.Create();
         }
 
-   
-
         #region IDisposable Support
+
         private bool disposedValue = false; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
@@ -58,8 +53,8 @@ namespace lib.test.infrastructure
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
-        #endregion
 
+        #endregion IDisposable Support
     }
 
     [CollectionDefinition("QueryCollection")]

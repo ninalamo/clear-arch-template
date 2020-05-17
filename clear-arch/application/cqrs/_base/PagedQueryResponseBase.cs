@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace application.cqrs._base
 {
-    public abstract class PagedQueryResponseBase<Tmapped> : IPagedResult<Tmapped> where Tmapped :  IHaveCustomMapping
+    public abstract class PagedQueryResponseBase<Tmapped> : IPagedResult<Tmapped> where Tmapped : IHaveCustomMapping
     {
         public IEnumerable<Tmapped> Data { get; private set; }
 

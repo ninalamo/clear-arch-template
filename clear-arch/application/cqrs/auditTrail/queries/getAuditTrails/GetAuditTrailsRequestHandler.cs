@@ -4,10 +4,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +21,6 @@ namespace application.cqrs.auditTrail.queries
             var total = dbContext.History.Count();
             var skip = request.GetSkip();
             var list = await dbContext.History.AsNoTracking().Skip(skip).Take(request.PageSize).ProjectTo<GetAuditTrailsDto>(mapper.ConfigurationProvider).ToArrayAsync();
-
 
             return new GetAuditTrailsResponse(list, request.PageNumber, request.PageSize, total);
         }

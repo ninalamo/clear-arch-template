@@ -1,7 +1,4 @@
-﻿using application.interfaces;
-using domain;
-using lib.common.interfaces;
-using System;
+﻿using lib.common.interfaces;
 
 namespace application
 {
@@ -9,7 +6,5 @@ namespace application
     {
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
-
-      
     }
 }

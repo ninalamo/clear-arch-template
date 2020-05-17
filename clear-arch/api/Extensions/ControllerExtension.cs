@@ -5,11 +5,8 @@ namespace api.Extensions
 {
     public static class ControllerExtension
     {
-
-
         public static void GiveCredit(this ControllerBase controller, ITakeCredit model, bool isEdit = false)
         {
-
             if (controller.User == null) return;
             if (controller.User.Identity.IsAuthenticated)
             {
@@ -32,8 +29,5 @@ namespace api.Extensions
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
-
-
-
     }
 }

@@ -1,8 +1,5 @@
 ﻿using application.infrastructure.automapper;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace lib.test.infrastructure
 {

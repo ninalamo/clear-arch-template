@@ -30,9 +30,6 @@ namespace lib.test.cqrs_tests
             var result = await sut.Handle(new GetAuditTrailsRequest(), CancellationToken.None);
 
             result.ShouldBeOfType<GetAuditTrailsResponse>();
-
-            
-
         }
 
         [Fact]
@@ -47,7 +44,6 @@ namespace lib.test.cqrs_tests
             result.Entity.ShouldBe("AuditTrail");
 
             result.ID.ShouldBe(1);
-
         }
     }
 }
