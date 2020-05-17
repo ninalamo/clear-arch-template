@@ -1,0 +1,6 @@
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\header.api\obj\Debug\netcoreapp3.1\x_api_key.csprojAssemblyReference.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\header.api\obj\Debug\netcoreapp3.1\x_api_key.csproj.CoreCompileInputs.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\header.api\obj\Debug\netcoreapp3.1\x_api_key.MvcApplicationPartsAssemblyInfo.cs
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\header.api\obj\Debug\netcoreapp3.1\x_api_key.MvcApplicationPartsAssemblyInfo.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\header.api\obj\Debug\netcoreapp3.1\x_api_key.AssemblyInfoInputs.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\header.api\obj\Debug\netcoreapp3.1\x_api_key.AssemblyInfo.cs
