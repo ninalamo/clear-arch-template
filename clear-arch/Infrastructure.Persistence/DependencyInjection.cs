@@ -10,8 +10,8 @@ namespace Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("NorthwindDatabase")));
+            services.AddDbContext<AuthDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("Database")));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 

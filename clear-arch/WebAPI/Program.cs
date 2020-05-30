@@ -28,7 +28,7 @@ namespace WebAPI
                     var applicationDbContext = services.GetRequiredService<ApplicationDbContext>();
                     applicationDbContext.Database.Migrate();
 
-                    var identityContext = services.GetRequiredService<IdentityDbContext>();
+                    var identityContext = services.GetRequiredService<AuthDbContext>();
                     identityContext.Database.Migrate();
 
                     //var mediator = services.GetRequiredService<IMediator>();

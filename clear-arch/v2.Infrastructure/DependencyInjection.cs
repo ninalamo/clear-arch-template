@@ -1,17 +1,15 @@
 ﻿using Core.Application.Common.Interfaces;
+using Core.Application.Common.Models;
 using Core.Common;
-using IdentityModel;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
 using Infrastructure.Identity;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
-using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Infrastructure
 {
@@ -25,11 +23,48 @@ namespace Infrastructure
             services.AddTransient<IDateTime, MachineDateTime>();
             //services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
-            services.AddDbContext<IdentityDbContext>(options =>
+            services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("Database")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddEntityFrameworkStores<IdentityDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(option =>
+            {
+                option.Password.RequireLowercase = true;
+                option.Password.RequireNonAlphanumeric = true;
+                option.Password.RequireUppercase = true;
+                option.User.RequireUniqueEmail = true;
+                option.SignIn.RequireConfirmedEmail = true;
+            })
+               .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<AuthDbContext>()
+                .AddDefaultTokenProviders();
+
+            // configure strongly typed settings objects
+            var appSettingsSection = configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // configure jwt authentication
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            //services.AddDefaultIdentity<ApplicationUser>()
+            //    .AddEntityFrameworkStores<IdentityDbContext>();
 
             //if (environment.IsEnvironment("Test"))
             //{
@@ -59,12 +94,12 @@ namespace Infrastructure
             //}
             //else
             //{
-                services.AddIdentityServer()
-                    .AddApiAuthorization<ApplicationUser, IdentityDbContext>();
+            //    services.AddIdentityServer()
+            //        .AddApiAuthorization<ApplicationUser, IdentityDbContext>();
             //}
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            //services.AddAuthentication()
+            //    .AddIdentityServerJwt();
 
             return services;
         }

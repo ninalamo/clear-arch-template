@@ -1,10 +1,7 @@
 using Core.Application;
-using Core.Application.Biz.People.Commands.UpsertPerson;
 using Core.Application.Common.Interfaces;
-using Core.Application.Common.Models;
 using FluentValidation.AspNetCore;
 using Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,11 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Persistence;
 using System;
-using System.Text;
 using System.Text.Json;
 using WebAPI.Filters;
 using WebAPI.Services;
@@ -50,42 +45,13 @@ namespace WebAPI
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-
             services.AddHttpContextAccessor();
 
-            #region Bearer Token Authorization
 
-            // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+           
 
-            // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
-            #endregion Bearer Token Authorization
-
-            //services
-            //   .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
             services
-             .AddControllers()
+                .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
              .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
              .AddJsonOptions(options =>
              {
@@ -103,7 +69,6 @@ namespace WebAPI
 
             services.AddRouting(x => x.LowercaseUrls = true);
 
-
             services.ConfigureSwaggerForBearer();
 
             _services = services;
@@ -112,7 +77,7 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (Environment.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -123,7 +88,6 @@ namespace WebAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseCustomExceptionHandler();
             app.UseHealthChecks("/health");
 
             app.UseRouting();
@@ -136,7 +100,6 @@ namespace WebAPI
                 .AllowAnyHeader());
 
             app.UseAuthentication();
-            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -153,8 +116,8 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseMvc();
-            app.UseResponseCaching();
-            app.UseResponseCompression();
+            //app.UseResponseCaching();
+            //app.UseResponseCompression();
 
             app.Use(async (context, next) =>
             {
