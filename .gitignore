@@ -2,22 +2,4 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
-*.suo
-/clear-arch/.vs/clear-arch/v16/Server/sqlite3
-/clear-arch/api/bin/Debug/netcoreapp3.0
-/clear-arch/api/obj
-/clear-arch/application/bin/Debug/netstandard2.1
-/clear-arch/application/obj
-/clear-arch/domain/obj
-/clear-arch/lib.common/bin/Debug/netstandard2.1
-/clear-arch/lib.common/obj
-/clear-arch/lib.infrastructure/obj
-/clear-arch/lib.test/bin/Debug/netcoreapp3.0
-/clear-arch/lib.test/obj
-/clear-arch/persistence/bin/Debug/netcoreapp3.0
-/clear-arch/persistence/obj
-/clear-arch/.vs/clear-arch
-/clear-arch/domain/bin/Debug/netstandard2.1
-/clear-arch/lib.infrastructure/bin/Debug/netstandard2.1
-/clear-arch/persistence/Migrations
+/clear-arch/.vs/clear-arch/v16
