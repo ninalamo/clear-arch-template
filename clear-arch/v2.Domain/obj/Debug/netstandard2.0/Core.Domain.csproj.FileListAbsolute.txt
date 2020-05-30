@@ -1,9 +1,0 @@
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\bin\Debug\netstandard2.0\Core.Domain.deps.json
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\bin\Debug\netstandard2.0\Core.Domain.dll
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\bin\Debug\netstandard2.0\Core.Domain.pdb
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\obj\Debug\netstandard2.0\Core.Domain.csprojAssemblyReference.cache
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\obj\Debug\netstandard2.0\Core.Domain.AssemblyInfoInputs.cache
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\obj\Debug\netstandard2.0\Core.Domain.AssemblyInfo.cs
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\obj\Debug\netstandard2.0\Core.Domain.csproj.CoreCompileInputs.cache
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\obj\Debug\netstandard2.0\Core.Domain.dll
-D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Domain\obj\Debug\netstandard2.0\Core.Domain.pdb
