@@ -60,7 +60,7 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("883ea2a4-ec47-4062-aab6-d713cfa42875"),
+                            ID = new Guid("dc412ff7-bcc4-47f2-8cfc-5fe4346dcf69"),
                             Birthday = new DateTimeOffset(new DateTime(1986, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 8, 0, 0, 0)),
                             CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "John",
