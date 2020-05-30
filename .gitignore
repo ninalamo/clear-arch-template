@@ -3,3 +3,15 @@
 ################################################################################
 
 /.vs
+/clear-arch/.vs/clear-arch
+/clear-arch/WebAPI/bin/Debug/netcoreapp3.1
+/clear-arch/WebAPI/obj
+/clear-arch/v2.Infrastructure/obj
+/clear-arch/v2.Infrastructure/bin/Debug/netcoreapp3.1
+/clear-arch/v2.Domain/obj
+/clear-arch/v2.Domain/bin/Debug/netstandard2.0
+/clear-arch/v2.Common/bin/Debug/netstandard2.1
+/clear-arch/v2.Common/obj
+/clear-arch/v2.Application/obj
+/clear-arch/v2.Application/bin/Debug/netstandard2.1
+/clear-arch/UrsaAPI
