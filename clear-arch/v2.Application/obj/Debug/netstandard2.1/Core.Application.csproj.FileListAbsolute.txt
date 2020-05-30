@@ -1,0 +1,12 @@
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\bin\Debug\netstandard2.1\Core.Application.deps.json
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\bin\Debug\netstandard2.1\Core.Application.dll
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\bin\Debug\netstandard2.1\Core.Application.pdb
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\bin\Debug\netstandard2.1\Core.Domain.dll
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\bin\Debug\netstandard2.1\Core.Domain.pdb
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.csprojAssemblyReference.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.AssemblyInfoInputs.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.AssemblyInfo.cs
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.csproj.CoreCompileInputs.cache
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.csproj.CopyComplete
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.dll
+D:\Users\nalamo\Source\Repos\clear-arch-template2\clear-arch\v2.Application\obj\Debug\netstandard2.1\Core.Application.pdb
