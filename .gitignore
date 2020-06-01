@@ -23,3 +23,6 @@
 /clear-arch/Application.UnitTests/obj
 /clear-arch/Infrastructure.Persistence/bin
 /clear-arch/Infrastructure.Persistence/obj
+/clear-arch/WebAPI.Tests/bin/Debug/netcoreapp3.1/runtimes
+/clear-arch/WebAPI.Tests/bin/Debug/netcoreapp3.1
+/clear-arch/WebAPI.Tests/obj
