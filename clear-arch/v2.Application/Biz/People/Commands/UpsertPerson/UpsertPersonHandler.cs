@@ -23,27 +23,33 @@ namespace Core.Application.Biz.People.Commands.UpsertPerson
             if (request.PersonID.HasValue)
             {
                 entity = await dbContext.People.FindAsync(request.PersonID.Value);
+
+                Fill(request, entity);
+
+                dbContext.People.Update(entity);
             }
             else
             {
                 entity = new Person();
                 dbContext.People.Add(entity);
+                Fill(request, entity);
+
             }
 
-            entity.FirstName = request.FirstName;
-            entity.LastName = request.LastName;
-            entity.MiddleName = request.MiddleName;
-            entity.NameSuffix = request.NameSuffix;
-            //entity.HomeAddress = new Address(
-            //    request.HomeAddress.Street, 
-            //    request.HomeAddress.City, 
-            //    request.HomeAddress.State,
-            //    request.HomeAddress.Country ,
-            //    request.HomeAddress.ZipCode);
+
+
 
             await dbContext.SaveChangesAsync(cancellationToken);
 
             return entity.ID;
+        }
+
+        private static void Fill(UpsertPersonCommand request, Person entity)
+        {
+            entity.FirstName = request.FirstName;
+            entity.LastName = request.LastName;
+            entity.MiddleName = request.MiddleName;
+            entity.NameSuffix = request.NameSuffix;
         }
     }
 

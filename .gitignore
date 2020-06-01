@@ -17,3 +17,9 @@
 /clear-arch/UrsaAPI
 /clear-arch/Infrastructure.Persistence/bin/Debug/netcoreapp3.1
 /clear-arch/Infrastructure.Persistence/obj
+/clear-arch/Application.UnitTests/bin/Debug/netcoreapp3.1
+/clear-arch/Application.UnitTests/obj
+/clear-arch/Application.UnitTests/bin/Debug/netcoreapp3.1
+/clear-arch/Application.UnitTests/obj
+/clear-arch/Infrastructure.Persistence/bin
+/clear-arch/Infrastructure.Persistence/obj
