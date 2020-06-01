@@ -15,3 +15,5 @@
 /clear-arch/v2.Application/obj
 /clear-arch/v2.Application/bin/Debug/netstandard2.1
 /clear-arch/UrsaAPI
+/clear-arch/Infrastructure.Persistence/bin/Debug/netcoreapp3.1
+/clear-arch/Infrastructure.Persistence/obj
