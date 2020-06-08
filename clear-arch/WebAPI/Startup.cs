@@ -47,8 +47,9 @@ namespace WebAPI
 
             services.AddHttpContextAccessor();
 
+            services.ConfigureSwaggerForBearer();
 
-           
+
 
             services
                 .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
