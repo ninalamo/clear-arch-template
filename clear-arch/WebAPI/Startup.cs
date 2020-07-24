@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using Persistence;
 using System;
 using System.Text.Json;
-using WebAPI.Filters;
+using WebAPI.Common;
 using WebAPI.Services;
 using WebAPI.Swagger;
 
@@ -47,12 +47,8 @@ namespace WebAPI
 
             services.AddHttpContextAccessor();
 
-            services.ConfigureSwaggerForBearer();
-
-
-
             services
-                .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
+                .AddMvc()
              .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
              .AddJsonOptions(options =>
              {
@@ -92,6 +88,8 @@ namespace WebAPI
             app.UseHealthChecks("/health");
 
             app.UseRouting();
+
+            app.UseCustomExceptionHandler();
 
             //must be AFTER ROUTING and BEFORE UseAuthorization
             app.UseCors(x => x

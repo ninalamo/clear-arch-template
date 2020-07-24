@@ -1,8 +1,7 @@
-﻿namespace Core.Domain.Common.Interfaces
+﻿namespace Core.Domain.Interfaces
 {
     public interface IActive
     {
         bool IsActive { get; set; }
-        void Deactivate();
     }
 }

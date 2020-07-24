@@ -2,12 +2,12 @@
 using Core.Application.Common.Interfaces;
 using Core.Application.Common.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +20,17 @@ namespace Infrastructure.Identity
         private readonly SignInManager<ApplicationUser> _signinManager;
         private readonly AppSettings appSettings;
 
-
-        public UserManagerService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UserManagerService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<AppSettings> options)
         {
             _userManager = userManager;
             _signinManager = signInManager;
+            appSettings = options.Value;
         }
 
-        public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
+        public async Task<(Result Result, string UserId, string Code)> CreateUserAsync(string userName, string password)
         {
+            var confirmationCode = "";
+
             var user = new ApplicationUser
             {
                 UserName = userName,
@@ -37,9 +39,13 @@ namespace Infrastructure.Identity
 
             var result = await _userManager.CreateAsync(user, password);
 
-            return (result.ToApplicationResult(), user.Id);
-        }
+            if (result.Succeeded)
+            {
+                confirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            }
 
+            return (result.ToApplicationResult(), user.Id, confirmationCode);
+        }
 
         public async Task<Result> AddToRoleAsync(string email, string role)
         {
@@ -71,7 +77,7 @@ namespace Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<(Result Result, string token)> UserLoginAsync(string userName, string password)
+        public async Task<string> UserLoginAsync(string userName, string password)
         {
             string errorMsg = string.Empty;
             try
@@ -87,7 +93,7 @@ namespace Infrastructure.Identity
                 {
                     //create claims based on roles / and application permission
                     token = CreateToken(user, out List<Claim> claims);
-                    return (Result.Success(), token);
+                    return token;
                 }
             }
             catch (Exception ex)
@@ -95,24 +101,22 @@ namespace Infrastructure.Identity
                 errorMsg = ex.Message;
             }
 
-            return (Result.Failure(new[] { "Unable to login", errorMsg }), string.Empty);
+            return string.Empty;
         }
 
-
-        public async Task<(Result, string)> GetPasswordResetToken(string email)
+        public async Task<string> GetPasswordResetToken(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user == null) return (Result.Failure(new[] { "Invalid email" }), string.Empty);
+            if (user == null) return string.Empty;
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            return (Result.Success(), token);
+            return token;
         }
 
         public async Task<Result> ResetPassword(string email, string password, string token)
         {
-
             var user = await _userManager.FindByEmailAsync(email);
 
             if (user == null) throw new Exception("Invalid email or username.");
@@ -120,11 +124,7 @@ namespace Infrastructure.Identity
             var result = await _userManager.ResetPasswordAsync(user, token, password);
 
             return result.ToApplicationResult();
-
         }
-
-
-
 
         private string CreateToken(ApplicationUser user, out List<Claim> claims)
         {
@@ -143,7 +143,7 @@ namespace Infrastructure.Identity
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(10D),
+                Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -151,7 +151,6 @@ namespace Infrastructure.Identity
 
             return tokenHandler.WriteToken(token);
         }
-
 
         private List<Claim> RoleBaseClaims(ApplicationUser user, string[] roles)
         {
@@ -166,7 +165,28 @@ namespace Infrastructure.Identity
             return claims;
         }
 
+        public async Task<Result> AddClaims(string email, string[] claims)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
 
+            if (user == null) throw new Exception("User not found.");
 
+            var result = await _userManager.AddClaimsAsync(user, claims.Select(i => new Claim("USER", i.ToUpper())));
+
+            return result.ToApplicationResult();
+        }
+
+        public async Task<Result> ConfirmEmail(string code, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null) throw new Exception("User not found.");
+
+            user.LockoutEnabled = false;
+            await _userManager.UpdateAsync(user);
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+
+            return result.ToApplicationResult();
+        }
     }
 }
