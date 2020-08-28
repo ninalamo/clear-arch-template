@@ -22,7 +22,7 @@ namespace Core.Application.Common.Behaviours
             var name = typeof(TRequest).Name;
 
             _logger.LogInformation("Northwind Request: {Name} {@UserId} {@Request}",
-                name, _currentUserService.UserId, request);
+                name, _currentUserService.UserID, request);
 
             return Task.CompletedTask;
         }

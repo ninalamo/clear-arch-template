@@ -3,6 +3,7 @@ using Core.Common;
 using Core.Domain.Entities;
 using Core.Domain.Logs;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Logs;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,6 +17,13 @@ namespace Persistence
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Audit> Audits { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Card> Cards { get; set; }
+        public virtual DbSet<CardLimit> CardLimits { get; set; }
+        public virtual DbSet<CardTransactionHistory> Transactions { get; set; }
+        public virtual DbSet<Station> Stations { get; set; }
+        public virtual DbSet<BaseFare> Fares { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<CardDiscountHistory> DiscountHistories { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -34,9 +42,9 @@ namespace Persistence
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-#if !DEBUG
+
             new AuditHelper(this).Audit(CurrentUserService.UserID);
-#endif
+
 
             return base.SaveChangesAsync(cancellationToken);
         }

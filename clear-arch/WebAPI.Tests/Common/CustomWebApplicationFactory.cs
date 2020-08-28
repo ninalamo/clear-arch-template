@@ -1,5 +1,4 @@
 ﻿using Core.Application.Common.Interfaces;
-using IdentityModel.Client;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Persistence;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace WebAPI.Tests.Common
@@ -26,7 +25,7 @@ namespace WebAPI.Tests.Common
                         .AddEntityFrameworkInMemoryDatabase()
                         .BuildServiceProvider();
 
-                    // Add a database context using an in-memory 
+                    // Add a database context using an in-memory
                     // database for testing.
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
@@ -66,57 +65,19 @@ namespace WebAPI.Tests.Common
             return CreateClient();
         }
 
-        public async Task<HttpClient> GetAuthenticatedClientAsync()
-        {
-            return await GetAuthenticatedClientAsync("jason@northwind", "Northwind1!");
-        }
-
-        public async Task<HttpClient> GetApiKeyClientAsync()
-        {
-            var client = CreateClient();
-
-            client.DefaultRequestHeaders.Add("X-Api-Key", "");
-
-            return client;
-        }
-
         public async Task<HttpClient> GetAuthenticatedClientAsync(string userName, string password)
         {
             var client = CreateClient();
+            var data = Utilities.GetRequestContent(new { userName, password });
+            var response = await client.PostAsync("/api/security/login", data);
 
-            var token = await GetAccessTokenAsync(client, userName, password);
+            response.EnsureSuccessStatusCode();
 
-            client.SetBearerToken(token);
+            var result = await response.Content.ReadFromJsonAsync<string>();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result);
 
             return client;
-        }
-
-        private async Task<string> GetAccessTokenAsync(HttpClient client, string userName, string password)
-        {
-            var disco = await client.GetDiscoveryDocumentAsync();
-
-            if (disco.IsError)
-            {
-                throw new Exception(disco.Error);
-            }
-
-            var response = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
-            {
-                Address = disco.TokenEndpoint,
-                ClientId = "Northwind.IntegrationTests",
-                ClientSecret = "secret",
-
-                Scope = "Northwind.WebUIAPI openid profile",
-                UserName = userName,
-                Password = password
-            });
-
-            if (response.IsError)
-            {
-                throw new Exception(response.Error);
-            }
-
-            return response.AccessToken;
         }
     }
 }
