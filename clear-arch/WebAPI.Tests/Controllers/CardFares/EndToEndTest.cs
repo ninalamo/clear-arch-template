@@ -82,7 +82,7 @@ namespace WebAPI.Tests.Controllers.CardFares
             var afterPayBalance = await payRes.Content.ReadFromJsonAsync<PayWithCardResult>();
 
             afterPayBalance.Balance.ShouldNotBe(newBalance.Balance);
-
+             
         }
     }
 }
