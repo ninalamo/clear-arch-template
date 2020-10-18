@@ -18,6 +18,9 @@ namespace WebAPI.Controllers
         {
             userManager = manager;
         }
+
+        [HttpGet]
+        [Route("login")]
         public async Task<ActionResult<string>> Login(string userName, string password)
         {
             return Ok(await userManager.UserLoginAsync(userName, password));

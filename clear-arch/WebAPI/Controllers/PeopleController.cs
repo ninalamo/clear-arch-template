@@ -7,6 +7,7 @@ namespace WebAPI.Controllers
     {
         [AllowAnonymous]
         [HttpGet]
+        [Route("allow")]
         public IActionResult Allow()
         {
             return Ok("test");
