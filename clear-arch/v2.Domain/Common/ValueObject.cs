@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Core.Domain.Common
 {
@@ -55,6 +56,17 @@ namespace Core.Domain.Common
             return GetAtomicValues()
                 .Select(x => x != null ? x.GetHashCode() : 0)
                 .Aggregate((x, y) => x ^ y);
+        }
+    }
+
+    public class Test : ValueObject
+    {
+        public string Name { get; set; }
+        public string Object { get; set; }
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Name;
+            yield return Object;
         }
     }
 }
