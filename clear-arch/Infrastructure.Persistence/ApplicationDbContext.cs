@@ -17,7 +17,7 @@ namespace Persistence
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Audit> Audits { get; set; }
         public virtual DbSet<Event> Events { get; set; }
-    
+        public virtual DbSet<Position> Positions { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

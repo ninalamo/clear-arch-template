@@ -15,6 +15,7 @@ namespace Core.Application.Common.Interfaces
         ChangeTracker ChangeTracker { get; }
         DbSet<Audit> Audits { get; set; }
         DbSet<Event> Events { get; set; }
+        DbSet<Position> Positions { get; set; }
        
     }
 }

@@ -59,14 +59,5 @@ namespace Core.Domain.Common
         }
     }
 
-    public class Test : ValueObject
-    {
-        public string Name { get; set; }
-        public string Object { get; set; }
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            yield return Name;
-            yield return Object;
-        }
-    }
+  
 }

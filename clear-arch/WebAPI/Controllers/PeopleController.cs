@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Core.Application.Biz.People.Commands.UpsertPerson;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -12,5 +14,10 @@ namespace WebAPI.Controllers
         {
             return Ok("test");
         }
+
+        [HttpPost]
+        [Route("upsert")]
+        public async Task<ActionResult<string>> Upsert(UpsertPersonCommand command) => Ok(await Mediator.Send(command));
+        
     }
 }
