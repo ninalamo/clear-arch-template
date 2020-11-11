@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Biz\People\Queries\" />
+    <Folder Include="Biz\Positions\Commands\" />
   </ItemGroup>
 
   <ItemGroup>

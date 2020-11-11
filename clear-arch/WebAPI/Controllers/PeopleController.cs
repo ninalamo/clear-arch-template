@@ -1,4 +1,5 @@
-﻿using Core.Application.Biz.People.Commands.UpsertPerson;
+﻿using Core.Application;
+using Core.Application.Biz.People.Commands.UpsertPerson;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -18,6 +19,12 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Route("upsert")]
         public async Task<ActionResult<string>> Upsert(UpsertPersonCommand command) => Ok(await Mediator.Send(command));
-        
+
+
+        [HttpGet]
+        [Route("testing")]
+        public async Task<ActionResult<string>> GejPositions() => Ok(await Mediator.Send(new GetPositionQuery()));
+
+
     }
 }
