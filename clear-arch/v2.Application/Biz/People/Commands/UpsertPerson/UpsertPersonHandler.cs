@@ -1,7 +1,11 @@
 ﻿using Core.Application.Common.Interfaces;
 using Core.Domain.Entities;
+using Core.Domain.ValueObjects;
+using FluentValidation;
 using MediatR;
 using System;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,7 +33,11 @@ namespace Core.Application.Biz.People.Commands.UpsertPerson
                 entity = new Person();
                 dbContext.People.Add(entity);
                 Fill(request, entity);
+
             }
+
+
+
 
             await dbContext.SaveChangesAsync(cancellationToken);
 
@@ -45,6 +53,17 @@ namespace Core.Application.Biz.People.Commands.UpsertPerson
         }
     }
 
+    public class UpsertPersonCommand : IRequest<Guid>
+    {
+        public Guid? PersonID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string NameSuffix { get; set; }
+        public DateTimeOffset Birthday { get; set; }
+        public HomeAddress HomeAddress { get; set; }
+    }
+
     public class HomeAddress
     {
         public String Street { get; set; }
@@ -52,5 +71,14 @@ namespace Core.Application.Biz.People.Commands.UpsertPerson
         public String State { get; set; }
         public String Country { get; set; }
         public String ZipCode { get; set; }
+    }
+
+    public class UpsertPersonValidator : AbstractValidator<UpsertPersonCommand>
+    {
+        public UpsertPersonValidator()
+        {
+            RuleFor(i => i.FirstName).NotEmpty();
+            RuleFor(i => i.LastName).NotEmpty();
+        }
     }
 }

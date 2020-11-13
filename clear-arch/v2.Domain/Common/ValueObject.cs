@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace Core.Domain.Common
 {
@@ -58,6 +57,4 @@ namespace Core.Domain.Common
                 .Aggregate((x, y) => x ^ y);
         }
     }
-
-  
 }
