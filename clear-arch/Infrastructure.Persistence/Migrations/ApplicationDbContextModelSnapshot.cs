@@ -15,21 +15,19 @@ namespace Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Core.Domain.Entities.Address", b =>
+            modelBuilder.Entity("Core.Domain.Entities.BaseFare", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -37,50 +35,7 @@ namespace Persistence.Migrations
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Line1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Line2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid?>("PersonID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PersonID");
-
-                    b.ToTable("Address");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.Email", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<bool?>("IsPrimary")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
@@ -89,17 +44,220 @@ namespace Persistence.Migrations
                     b.Property<DateTimeOffset?>("ModifiedOn")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("PersonID")
+                    b.HasKey("ID");
+
+                    b.ToTable("Fares");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Amount = 11.00m,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Card", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Title")
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("DiscountType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDTypeForDiscount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("LastUsed")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("PWD_SeniorRef")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("PersonID");
+                    b.ToTable("Cards");
+                });
 
-                    b.ToTable("Email");
+            modelBuilder.Entity("Core.Domain.Entities.CardDiscountHistory", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CardID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("CurrentDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("float");
+
+                    b.Property<decimal>("DiscountAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("DiscountHistories");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.CardLimit", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<decimal>("Maximum")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Minimum")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CardLimits");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Maximum = 10000m,
+                            Minimum = 100m
+                        });
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.CardTransactionHistory", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Adjustment")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("CardID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("Transaction")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CardID");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Discount", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Percent")
+                        .HasColumnType("float");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Discounts");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1L,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "X5",
+                            Percent = 0.20000000000000001
+                        },
+                        new
+                        {
+                            ID = 2L,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "X4",
+                            Percent = 0.029999999999999999
+                        },
+                        new
+                        {
+                            ID = 3L,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "X0",
+                            Percent = 0.0
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Person", b =>
@@ -143,7 +301,7 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("ec4176ca-34a5-4058-b405-134d0fb74f7d"),
+                            ID = new Guid("ff78f51f-46d5-4def-a9fa-66bd8b2ad444"),
                             Birthday = new DateTimeOffset(new DateTime(1986, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 8, 0, 0, 0)),
                             CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "John",
@@ -151,21 +309,21 @@ namespace Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.Position", b =>
+            modelBuilder.Entity("Core.Domain.Entities.Station", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("FromPrevious")
+                        .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -176,9 +334,174 @@ namespace Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ToNext")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
-                    b.ToTable("Positions");
+                    b.ToTable("Stations");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 0,
+                            Name = "Baclaran",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "EDSA",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "Libertad",
+                            ToNext = 0
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 0,
+                            Name = "Gil Puyat",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "V. Cruz",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "Quirino",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "P. Gil",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "United Nations",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "C. Terminal",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 10,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "Carriedo",
+                            ToNext = 0
+                        },
+                        new
+                        {
+                            ID = 11,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 0,
+                            Name = "D. Jose",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 12,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "Bambang",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 13,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "Tayuman",
+                            ToNext = 0
+                        },
+                        new
+                        {
+                            ID = 14,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 0,
+                            Name = "Blumentritt",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 15,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "A. Santos",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 16,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "R. Papa",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 17,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "5th Ave.",
+                            ToNext = 1
+                        },
+                        new
+                        {
+                            ID = 18,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 1,
+                            Name = "Monumento",
+                            ToNext = 2
+                        },
+                        new
+                        {
+                            ID = 19,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 2,
+                            Name = "Balintawak",
+                            ToNext = 2
+                        },
+                        new
+                        {
+                            ID = 20,
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FromPrevious = 2,
+                            Name = "Roosevelt",
+                            ToNext = 0
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.Logs.Audit", b =>
@@ -240,18 +563,13 @@ namespace Persistence.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.Address", b =>
+            modelBuilder.Entity("Core.Domain.Entities.CardTransactionHistory", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Person", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("PersonID");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.Email", b =>
-                {
-                    b.HasOne("Core.Domain.Entities.Person", null)
-                        .WithMany("Emails")
-                        .HasForeignKey("PersonID");
+                    b.HasOne("Core.Domain.Entities.Card", "Card")
+                        .WithMany()
+                        .HasForeignKey("CardID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
