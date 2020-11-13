@@ -15,13 +15,8 @@ namespace Core.Application.Common.Interfaces
         ChangeTracker ChangeTracker { get; }
         DbSet<Audit> Audits { get; set; }
         DbSet<Event> Events { get; set; }
-        DbSet<Station> Stations { get; set; }
-        DbSet<CardTransactionHistory> Transactions { get; set; }
-        DbSet<CardLimit> CardLimits { get; set; }
-        DbSet<Card> Cards { get; set; }
-        DbSet<CardDiscountHistory> DiscountHistories { get; set; }
-        DbSet<Discount> Discounts { get; set; }
-        DbSet<BaseFare> Fares { get; set; }
+        DbSet<Position> Positions { get; set; }
+       
     }
 }
 

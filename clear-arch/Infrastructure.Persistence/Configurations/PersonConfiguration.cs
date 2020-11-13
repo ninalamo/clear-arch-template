@@ -1,10 +1,7 @@
 ﻿using Core.Domain.Entities;
-using Core.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Persistence.Configurations
 {
@@ -15,7 +12,7 @@ namespace Persistence.Configurations
             builder.HasKey(i => i.ID).HasName("PersonID");
             //builder.OwnsOne(i => i.HomeAddress);
 
-            var address = new Address("70 Sta. Maria St.", "Muntinlupa City", "Metro manila", "Philippines", "1772");
+            //var address = new Core.Domain.ValueObjects.Address("70 Sta. Maria St.", "Muntinlupa City", "Metro manila", "Philippines", "1772");
             builder.HasData(new[]
             {
                 new Person
