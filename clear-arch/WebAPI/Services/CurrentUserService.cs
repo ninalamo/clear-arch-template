@@ -8,7 +8,7 @@ namespace WebAPI.Services
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            UserID = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            UserID = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name);
             IsAuthenticated = UserID != null;
         }
 

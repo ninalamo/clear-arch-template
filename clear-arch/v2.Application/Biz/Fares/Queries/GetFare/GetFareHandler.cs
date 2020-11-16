@@ -21,6 +21,7 @@ namespace Core.Application.Biz.Fares.Queries
 
         public async Task<GetFareResult> Handle(GetFareQuery request, CancellationToken cancellationToken)
         {
+            
             var points = await dbContext.Stations
                 .OrderBy(i => i.ID)
                 .Where(i =>
