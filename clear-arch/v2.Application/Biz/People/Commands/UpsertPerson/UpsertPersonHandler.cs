@@ -1,11 +1,8 @@
 ﻿using Core.Application.Common.Interfaces;
 using Core.Domain.Entities;
-using Core.Domain.ValueObjects;
 using FluentValidation;
 using MediatR;
 using System;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,11 +30,7 @@ namespace Core.Application.Biz.People.Commands.UpsertPerson
                 entity = new Person();
                 dbContext.People.Add(entity);
                 Fill(request, entity);
-
             }
-
-
-
 
             await dbContext.SaveChangesAsync(cancellationToken);
 

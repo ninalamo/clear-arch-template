@@ -2,8 +2,6 @@
 using Core.Application.Common.Mappings;
 using Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Application.UnitTests.Common

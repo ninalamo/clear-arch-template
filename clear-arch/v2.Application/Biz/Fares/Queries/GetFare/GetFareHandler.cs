@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using Core.Application.Common.Exceptions;
 using Core.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,7 +16,7 @@ namespace Core.Application.Biz.Fares.Queries
 
         public async Task<GetFareResult> Handle(GetFareQuery request, CancellationToken cancellationToken)
         {
-            
+
             var points = await dbContext.Stations
                 .OrderBy(i => i.ID)
                 .Where(i =>

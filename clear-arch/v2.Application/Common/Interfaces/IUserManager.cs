@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Core.Application.Common.Models;
+﻿using Core.Application.Common.Models;
+using System.Threading.Tasks;
 
 namespace Core.Application.Common.Interfaces
 {

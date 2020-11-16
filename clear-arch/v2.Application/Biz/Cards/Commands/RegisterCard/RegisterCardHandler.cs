@@ -24,7 +24,7 @@ namespace Core.Application.Biz.Cards.Commands
 
             if (card.CanBeRegistered())
             {
-                card.IDTypeForDiscount = (IDForDiscount) request.IDForDiscount;
+                card.IDTypeForDiscount = (IDForDiscount)request.IDForDiscount;
                 card.DiscountType = CardType.Discounted;
                 card.LastUsed = DateTimeOffset.Now;
                 card.PWD_SeniorRef = request.PWD_SeniorRef;

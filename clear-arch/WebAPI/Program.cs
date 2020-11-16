@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Persistence;
 using System;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace WebAPI
 {

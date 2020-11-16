@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Core.Domain.Common;
+﻿using Core.Domain.Common;
+using System.Collections.Generic;
 
 namespace Core.Domain.Entities
 {
@@ -37,6 +37,6 @@ namespace Core.Domain.Entities
             };
         }
 
-        
+
     }
 }

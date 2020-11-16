@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Core.Domain.Common;
-using Core.Domain.ValueObjects;
+﻿using Core.Domain.Common;
+using System;
 
 namespace Core.Domain.Entities
 {

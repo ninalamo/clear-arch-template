@@ -4,7 +4,6 @@ using Core.Domain.Entities;
 using Core.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +27,7 @@ namespace Core.Application.Biz.Cards.Commands
 
 
 
-            if(balance + request.LoadAmount > limit.Maximum)
+            if (balance + request.LoadAmount > limit.Maximum)
             {
                 throw new System.Exception("Load limit reached.");
             }

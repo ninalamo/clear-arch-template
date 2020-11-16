@@ -19,7 +19,7 @@ namespace Core.Application.Biz.Cards.Commands
             var card = new Card
             {
                 Balance = 100M,
-                CardNumber = $"{new Random().Next(100,999)}{Guid.NewGuid().ToString().Split("-")[0].ToUpper()}{new Random().Next(1000, 9999)}".ToUpper(),
+                CardNumber = $"{new Random().Next(100, 999)}{Guid.NewGuid().ToString().Split("-")[0].ToUpper()}{new Random().Next(1000, 9999)}".ToUpper(),
                 DiscountType = CardType.Regular,
                 IDTypeForDiscount = IDForDiscount.None,
                 LastUsed = DateTimeOffset.Now,

@@ -1,5 +1,4 @@
 ﻿using Core.Application.Biz.People.Commands.UpsertPerson;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,7 @@ namespace WebAPI.Controllers
 {
     public class PeopleController : BaseController
     {
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+      
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> CreatePerson([FromBody] UpsertPersonCommand command)

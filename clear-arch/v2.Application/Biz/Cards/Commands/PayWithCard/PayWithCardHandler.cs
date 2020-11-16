@@ -5,7 +5,6 @@ using Core.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +28,7 @@ namespace Core.Application.Biz.Cards.Commands
             //check if has history for discount today
             var history = dbContext.DiscountHistories
                 .AsNoTracking()
-                .Where(i => i.CurrentDate.Date == DateTimeOffset.Now.Date );
+                .Where(i => i.CurrentDate.Date == DateTimeOffset.Now.Date);
 
             var amount = 0M;
             var discount = 0D;
@@ -41,8 +40,8 @@ namespace Core.Application.Biz.Cards.Commands
             }
             else if (history.Count() <= 5 && history.Count() > 0)
             {
-                discount = dbContext.Discounts.Where(d => 
-                    d.Name == (card.DiscountType == CardType.Discounted ? "X5" : "X0") || 
+                discount = dbContext.Discounts.Where(d =>
+                    d.Name == (card.DiscountType == CardType.Discounted ? "X5" : "X0") ||
                     d.Name == "X4")
                     .Sum(d => d.Percent);
             }

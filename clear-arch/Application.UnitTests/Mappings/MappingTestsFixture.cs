@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Core.Application.Common.Mappings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.UnitTests.Mappings
 {

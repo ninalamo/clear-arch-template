@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.UnitTests.Common
 {
@@ -25,7 +23,7 @@ namespace Application.UnitTests.Common
                 new Person{ FirstName = "Indian", LastName = "Doe", Birthday = DateTimeOffset.Now.AddYears(-4) },
             });
 
-            
+
 
             context.SaveChanges();
 

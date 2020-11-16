@@ -1,5 +1,4 @@
 ﻿using Core.Application.Common.Interfaces;
-using Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

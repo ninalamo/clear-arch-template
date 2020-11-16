@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Core.Application.Common.Interfaces
+﻿namespace Core.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {
@@ -13,6 +10,6 @@ namespace Core.Application.Common.Interfaces
     public interface IMetroFareService
     {
         decimal GetDiscountedFare(string cardNumber, decimal amount);
-       
+
     }
 }

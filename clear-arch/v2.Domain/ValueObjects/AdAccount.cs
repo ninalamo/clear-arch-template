@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Core.Domain.Common;
+﻿using Core.Domain.Common;
 using Core.Domain.Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace Core.Domain.ValueObjects
 {

@@ -9,7 +9,7 @@ namespace Persistence.Configurations
         public void Configure(EntityTypeBuilder<Discount> builder)
         {
             builder.HasData(
-            
+
                 Discount.GetDiscounts()
             );
         }

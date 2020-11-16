@@ -22,6 +22,6 @@ namespace Core.Domain.Entities
         public bool IsValid => LastUsed.AddYears(5).Date >= DateTimeOffset.Now.Date;
     }
 
-   
-   
+
+
 }

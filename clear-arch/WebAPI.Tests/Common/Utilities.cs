@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Persistence;
 using System.Net.Http;
 using System.Text;
@@ -25,7 +24,7 @@ namespace WebAPI.Tests.Common
 
         public static void InitializeDbForTests(ApplicationDbContext context)
         {
-            
+
 
             context.SaveChanges();
         }

@@ -2,9 +2,6 @@
 using Core.Application.Biz.People.Commands.UpsertPerson;
 using Core.Domain.Entities;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Application.UnitTests.Mappings
@@ -38,6 +35,6 @@ namespace Application.UnitTests.Mappings
             result.ShouldBeOfType<UpsertPersonCommand>();
         }
 
-       
+
     }
 }

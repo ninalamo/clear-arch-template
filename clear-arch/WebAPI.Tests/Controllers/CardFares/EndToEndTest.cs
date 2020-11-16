@@ -11,7 +11,7 @@ namespace WebAPI.Tests.Controllers.CardFares
 {
     public class EndToEndTest : BaseTestController
     {
-        
+
 
         public EndToEndTest(CustomWebApplicationFactory<Startup> factory) : base(factory)
         {
